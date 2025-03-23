@@ -1,0 +1,94 @@
+% packages used:
+\usepackage[german]{babel}
+% for umlaute
+\usepackage[utf8]{inputenc} 
+% for ascii symbols and letters
+\usepackage[pdftex]{graphicx}
+% for including logo
+\usepackage{fancyhdr}
+% header and foot package
+\usepackage{url}
+% to include hyperlinks
+\usepackage[left=2cm,top=3cm,right=2cm,bottom=3cm]{geometry}
+% margin options
+%\usepackage[tocindentauto]{tocstyle}
+% used to alter toc spacing
+\usepackage{comment}
+% for using comment environment
+\usepackage[normalem]{ulem}
+%just for track changes version, allows crossing out
+\usepackage{xcolor}
+%to highlight changes in the document
+\usepackage{soul}
+\setstcolor{red}
+%to cross out article
+
+% New commands and layout settings:
+\pagestyle{fancy}
+\lhead{\thetitle}
+\lfoot{Vereinigung der Chemiestudierenden}
+\cfoot{}
+% removes page number in the center of the foot note
+\rfoot[\theorg]{\thepage}
+% Sets title in the header
+\renewcommand{\footrulewidth}{0.4pt}
+% Makes a decorative line at the bottom of the page
+\renewcommand{\sectionmark}[1]{%
+ \markboth{\thesection.\ #1}{}}
+% Makes the name of the section in the header smaller
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+% Command to make lines
+\newcounter{article}
+\setcounter{article}{1}
+% Needed to make a continous numbering of the articles
+\renewcommand{\thesection}{\Roman{section}} 
+% Sets the numbering of the section to roman 
+\renewcommand{\thesubsection}{
+	Art. \arabic{article}\addtocounter{article}{1}
+}
+% Removes the section numbering in the subsection title
+\renewcommand{\labelitemi}{-}
+% Sets itemize label to a dash instead of a bullet
+\renewcommand\maketitle{
+    \begin{center}
+       \HRule \\[0.4cm]
+       { \Huge \bfseries \thetitle \\[0.4cm] }
+       \HRule \\[1.5cm]
+       \textsc{\large \theorglong}\\[1cm]
+       \textsc{\large \theplace, \thedate}\\[2cm]
+       \includegraphics[width=0.8\textwidth]{\wherelogo}~\\[1.5cm]
+       \vfill
+       \foottitlepage
+       \HRule
+       {\null\thispagestyle{empty}\newpage}
+    \end{center}
+}
+\newcommand{\maketoc}[1][2]{\setcounter{tocdepth}{#1}
+% Alter tocdepth to 1 to hide articles in table of content
+\pagenumbering{Roman}
+% Sets page numbering to roman for the table of content
+\tableofcontents
+\newpage
+% Breaks page after table of content
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\noindent
+% Changes page numbering back to arabic for content
+}
+
+% invariant content for the title page
+\newcommand{\theorg}{
+	Vereinigung der Chemiestudierenden	% Name of the organisation
+	}
+\newcommand{\theorglong}{
+	Vereinigung der Studierenden der Chemie, Biochemie - Chemische Biologie, Chemieingenieurwissenschaften und interdisziplinären Naturwissenschaften an der ETH Zürich
+	}	% long name of the organisation
+\newcommand{\theorgshort}{
+	VCS	% shortcut or short name of the organisation
+	}
+\newcommand{\wherelogo}{./Bilder/vcslogomockup-1024x377.jpg}	
+	% path of the logo/picture
+\newcommand{\theplace}{Zürich}	% place 
+\newcommand{\foottitlepage}{ 
+	Ein Fachverein des VSETH - \url{www.vseth.ethz.ch}
+	\\}	% possibilty to make a footnote on the title page
